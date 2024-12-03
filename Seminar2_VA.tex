@@ -1,0 +1,147 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+
+\geometry{a4paper, margin=1in}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{CS465/565 - Scientific Computing}
+\fancyhead[R]{Vandan Amin}
+\fancyfoot[C]{\thepage}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    
+    \Huge
+    \textbf{A Study of Heuristic Solutions to the Traveling Salesman Problem}
+    
+    \vspace{1.5cm}
+    
+    \Large
+    \textbf{Vandan Amin} \\
+    Student ID: 44006979
+    
+    \vspace{0.5cm}
+    Department of Computer Science, Central Washington University
+    \\ CS465/565 - Scientific Computing
+
+    \vspace{0.5cm}
+    Dr. Donald Davendra
+    \\ \today
+    \vfill
+
+\end{titlepage}
+
+\tableofcontents
+
+\newpage
+\begin{abstract}
+    The Traveling Salesman Problem (TSP) is a well-known combinatorial optimization problem with applications in various industries, including logistics, manufacturing, and telecommunications. This report presents an overview of heuristic solutions used to solve the TSP, focusing on practical and easy-to-implement approaches. Specifically, the study includes an analysis of two different solvers: Simulated Annealing and Genetic Algorithm. The report evaluates the performance of these solvers based on their efficiency, scalability, and practicality for solving real-world TSP instances.
+\end{abstract}
+
+\newpage
+
+\section{Introduction}
+The Traveling Salesman Problem (TSP) is one of the most studied combinatorial optimization problems in the field of operations research and computer science. Given a list of cities and the distances between each pair, the objective of TSP is to find the shortest possible route that visits each city exactly once and returns to the starting point. TSP has numerous practical applications, including route planning, circuit board manufacturing, and supply chain optimization. This report explores two popular heuristic approaches to solving the TSP: Simulated Annealing and Genetic Algorithm, highlighting their strengths, limitations, and use cases in industry.
+
+\section{Simulated Annealing}
+Simulated Annealing (SA) is a probabilistic heuristic used to find approximate solutions to optimization problems like TSP. It is inspired by the annealing process in metallurgy, where a material is heated and then slowly cooled to decrease defects and find a low-energy state.
+
+\subsection{Algorithm Overview}
+The Simulated Annealing algorithm begins with an initial solution and iteratively makes small changes to the current solution. The new solution is accepted with a probability that depends on the difference in cost between the current and new solutions and a parameter called temperature, which gradually decreases over time.
+
+\textbf{Mathematical Description:}
+
+Let $f(x)$ be the cost function evaluating the quality of solution $x$, and let $T$ be the temperature. The algorithm proceeds as follows:
+\begin{enumerate}
+    \item Start with an initial solution $x_0$ and an initial temperature $T_0$.
+    \item Set the current solution $x = x_0$ and temperature $T = T_0$.
+    \item Repeat until the stopping criterion is met (e.g., a sufficiently low temperature or a maximum number of iterations):
+    \begin{enumerate}
+        \item Generate a new solution $x'$ by making a small random change to $x$.
+        \item Calculate the change in cost $\Delta f = f(x') - f(x)$.
+        \item If $\Delta f < 0$, accept the new solution ($x = x'$).
+        \item Otherwise, accept $x'$ with probability $e^{-\Delta f / T}$.
+        \item Decrease the temperature $T$ according to a cooling schedule.
+    \end{enumerate}
+\end{enumerate}
+
+\subsection{Advantages}
+\begin{itemize}
+    \item Simple to implement and can escape local optima.
+    \item Capable of finding good approximate solutions for large problem instances.
+    \item Flexible and can be adapted for various problem types.
+\end{itemize}
+
+\subsection{Disadvantages}
+\begin{itemize}
+    \item Does not guarantee an optimal solution.
+    \item Performance depends on the cooling schedule and parameter tuning.
+    \item May require a long runtime to converge to a good solution.
+\end{itemize}
+
+\subsection{Industrial Applications}
+Simulated Annealing is used in industries where finding a near-optimal solution is acceptable, and the problem space is large. For example, it is used in telecommunications for network optimization and in manufacturing for job scheduling.
+
+\section{Genetic Algorithm Solver}
+The Genetic Algorithm (GA) is a heuristic approach inspired by the process of natural selection. It is commonly used to find approximate solutions to complex optimization problems like TSP.
+
+\subsection{Algorithm Overview}
+Genetic Algorithms work by simulating the process of evolution. A population of potential solutions (individuals) is generated, and each individual is evaluated based on a fitness function. The best individuals are selected to create offspring through crossover and mutation, with the goal of improving the quality of solutions over successive generations.
+
+\textbf{Mathematical Description:}
+
+Let $P(t)$ represent the population at generation $t$, and let $f(x)$ be the fitness function evaluating the quality of solution $x$. The GA proceeds as follows:
+\begin{enumerate}
+    \item Initialize a population $P(0)$ of potential solutions.
+    \item Evaluate the fitness of each individual in $P(0)$ using $f(x)$.
+    \item Repeat until a stopping criterion is met (e.g., a maximum number of generations):
+    \begin{enumerate}
+        \item Select individuals from $P(t)$ to form a mating pool.
+        \item Apply crossover and mutation operators to generate offspring.
+        \item Form the new population $P(t+1)$ from the offspring.
+        \item Evaluate the fitness of each individual in $P(t+1)$.
+    \end{enumerate}
+\end{enumerate}
+
+\subsection{Advantages}
+\begin{itemize}
+    \item Capable of finding good approximate solutions in a reasonable amount of time.
+    \item Scalable to larger problem instances compared to exact methods.
+    \item Flexible and can be adapted to various problem constraints and objectives.
+\end{itemize}
+
+\subsection{Disadvantages}
+\begin{itemize}
+    \item Does not guarantee an optimal solution.
+    \item Performance depends on the choice of parameters, such as population size and mutation rate.
+    \item May require significant computational resources for large populations or many generations.
+\end{itemize}
+
+\subsection{Industrial Applications}
+Genetic Algorithms are widely used in industries where finding a near-optimal solution quickly is more important than finding the exact optimal solution. For instance, logistics companies use GAs to optimize delivery routes, reducing fuel consumption and improving delivery times.
+
+\section{Conclusion}
+The Traveling Salesman Problem is a challenging optimization problem with many real-world applications. The choice of a suitable solver depends on the specific requirements of the problem instance. Simulated Annealing is a simple and easy-to-implement method that provides good approximate solutions, making it suitable for large problem instances where escaping local optima is important. On the other hand, Genetic Algorithms are more suitable for larger instances where a good approximate solution is needed quickly. Understanding the strengths and limitations of each approach is crucial for selecting the right method for solving TSP in practice.
+
+\newpage
+\section{References}
+\begin{enumerate}
+    \item Applegate, D. L., Bixby, R. E., Chvátal, V., & Cook, W. J. (2006). The Traveling Salesman Problem: A Computational Study. Princeton University Press.
+    
+    \item Lawler, E. L., Lenstra, J. K., Rinnooy Kan, A. H. G., & Shmoys, D. B. (1985). The Traveling Salesman Problem: A Guided Tour of Combinatorial Optimization. Wiley.
+    
+    \item Holland, J. H. (1975). Adaptation in Natural and Artificial Systems. University of Michigan Press.
+
+    \item Mitchell, M. (1998). An Introduction to Genetic Algorithms. MIT Press.
+
+    \item Laporte, G. (1992). The Traveling Salesman Problem: An Overview of Exact and Approximate Algorithms. \ 	\textit{European Journal of Operational Research, 59}(2), 231-247. \url{https://doi.org/10.1016/0377-2217(92)90138-Y}
+\end{enumerate}
+
+\end{document}
