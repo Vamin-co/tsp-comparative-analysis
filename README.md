@@ -39,3 +39,8 @@ Performance metrics, including the total distance and runtime for both algorithm
 #### Datasets
 The project includes tests on various datasets such as `a280.tsp`, `bayg29.tsp`, and `brazil58.tsp`. The datasets can be customized by the user.
 
+#### Research Materials
+This repository includes additional research materials for further insights:
+- [Project Report (PDF)](Project2_CS465_Amin.pdf)
+- [Seminar Presentation (PDF)](Seminar2_CS465_Amin.pdf)
+
